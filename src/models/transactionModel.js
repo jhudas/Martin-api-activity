@@ -11,9 +11,20 @@ const transactionSchema = new mongoose.Schema({
         required: true,
         min: [0.01, 'Amount must be greater than zero']
     },
+    type:{
+        type: String,
+        enum: ['income', 'expense'],
+        required: true
+
+    },
     date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        tags: [String]
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 
