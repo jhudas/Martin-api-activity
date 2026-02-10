@@ -1,32 +1,18 @@
-const transactions = [
-    {
-        id: 1,
-        description: 'Starbucks Coffee',
-        amount: 5.5,
-        type: 'expense',
-        date: '2023-10-01'
-    },
-    {
-        id: 2,
-        description: 'Freelane Client Payment',
-        amount: 500.0,
-        type: 'income',
-        date: '2023-10-02'
-    },
-    {
-        id: 3,
-        description: 'Grocery Store',
-        amount: 120.0,
-        type: 'expense',
-        date: '2023-10-05'
-    },
-    {
-        id: 4,
-        description: 'Monthly Rent',
-        amount: 1200.0,
-        type: 'expense',
-        date: '2023-10-01',
-    },
-];
+const mongoose = require('mongoose');
 
-module.exports = transactions;
+const transactionSchema = new mongoose.Schema({
+    description: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+module.exports = mongoose.model('Transaction', transactionSchema);
